@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Forms</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        <!-- here appfolder is the name you creatied app urls.py -->
+        <li><a href="{% url 'appfolder:register' %}">Register</a></li>
+
+        <!-- user in templates corresponds to request.user, the currently logged-in user. -->
+          {% if user.is_authenticated %}
+          <!-- login(request, user_auth) sets request.user, which becomes user in templates -->
+
+          <!-- user.is_authenricated placed here to control the navbar’s display across all pages that extend it. -->
+              <li><a href="{% url 'appfolder:logout' %}">Log Out</a></li>
+          {% else %}
+          <!-- because of anchor tag it takes the current page to a corrsesponding page via GET -->
+              <li><a href="{% url 'appfolder:login' %}">Log In</a></li>
+        </div>
+    </nav>
+          {% endif %}
+  
+
+    <div class = 'container'>
+          {% block body_block %}  
+          {% endblock %}
+    </div>
+
+  </body>
+</html>

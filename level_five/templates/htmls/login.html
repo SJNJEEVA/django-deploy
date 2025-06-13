@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block body_block %}
+<h1>LOGIN HERE</h1>
+<!-- action checks the process of authentication via POST.get upon clicking the submit -->
+<form action="{% url 'appfolder:login' %}" method="post">
+    {% csrf_token %}
+  <div class = 'jumbotron'>
+    <label for="username">USERNAME</label>
+    <input id='username' type="text" name="username">
+
+    <label for="password">PASSWORD</label>
+    <input id="password" type="password" name="password">
+
+    <input type="submit" value="Submit">
+  </div>
+</form>
+{% endblock %}
